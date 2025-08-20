@@ -539,31 +539,31 @@ My core interest lies in the narrative that data tells. I enjoy the process of d
 
                     <div class="bg-gray-900/60 backdrop-blur-sm border border-gray-700 p-8 rounded-lg">
                         <h3 class="text-2xl font-semibold text-violet-400 mb-6">Send me a message</h3>
-                        <form action="#" method="POST">
-                            <div class="grid sm:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
-                                    <input type="text" name="name" id="name" required class="w-full bg-gray-800/50 border border-gray-600 rounded-lg py-2 px-4 text-white focus:ring-violet-500 focus:border-violet-500">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
-                                    <input type="email" name="email" id="email" required class="w-full bg-gray-800/50 border border-gray-600 rounded-lg py-2 px-4 text-white focus:ring-violet-500 focus:border-violet-500">
-                                </div>
-                            </div>
-                            <div class="mt-6">
-                                <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject *</label>
-                                <input type="text" name="subject" id="subject" required class="w-full bg-gray-800/50 border border-gray-600 rounded-lg py-2 px-4 text-white focus:ring-violet-500 focus:border-violet-500">
-                            </div>
-                            <div class="mt-6">
-                                <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message *</label>
-                                <textarea name="message" id="message" rows="4" required class="w-full bg-gray-800/50 border border-gray-600 rounded-lg py-2 px-4 text-white focus:ring-violet-500 focus:border-violet-500"></textarea>
-                            </div>
-                            <div class="mt-6">
-                                <button type="submit" class="w-full bg-violet-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-violet-700 transition-colors flex items-center justify-center">
-                                    <i class="fas fa-paper-plane mr-2"></i> Send Message
-                                </button>
-                            </div>
-                        </form>
+                        <form id="contact-form">
+    <div class="grid sm:grid-cols-2 gap-6">
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
+            <input type="text" name="name" id="name" required class="w-full bg-gray-800/50 border border-gray-600 rounded-lg py-2 px-4 text-white focus:ring-violet-500 focus:border-violet-500">
+        </div>
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
+            <input type="email" name="email" id="email" required class="w-full bg-gray-800/50 border border-gray-600 rounded-lg py-2 px-4 text-white focus:ring-violet-500 focus:border-violet-500">
+        </div>
+    </div>
+    <div class="mt-6">
+        <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject *</label>
+        <input type="text" name="subject" id="subject" required class="w-full bg-gray-800/50 border border-gray-600 rounded-lg py-2 px-4 text-white focus:ring-violet-500 focus:border-violet-500">
+    </div>
+    <div class="mt-6">
+        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message *</label>
+        <textarea name="message" id="message" rows="4" required class="w-full bg-gray-800/50 border border-gray-600 rounded-lg py-2 px-4 text-white focus:ring-violet-500 focus:border-violet-500"></textarea>
+    </div>
+    <div class="mt-6">
+        <button type="submit" class="w-full bg-violet-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-violet-700 transition-colors flex items-center justify-center">
+            <i class="fas fa-paper-plane mr-2"></i> Send Message
+        </button>
+    </div>
+</form>
                     </div>
                 </div>
             </section>
@@ -683,6 +683,24 @@ My core interest lies in the narrative that data tells. I enjoy the process of d
             slideInElements.forEach(el => {
                 slideInObserver.observe(el);
             });
+
+            // Contact form mailto redirect
+            const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            const mailto = `mailto:praveenbollam9550@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\n\n${message}`
+            )}`;
+
+            window.location.href = mailto;
+        });
+    }
         });
     </script>
 </body>
